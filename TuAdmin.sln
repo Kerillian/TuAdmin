@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuAdmin", "TuAdmin\TuAdmin.csproj", "{BB8314DC-2762-4458-A85C-B2452A4F2533}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB8314DC-2762-4458-A85C-B2452A4F2533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB8314DC-2762-4458-A85C-B2452A4F2533}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB8314DC-2762-4458-A85C-B2452A4F2533}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB8314DC-2762-4458-A85C-B2452A4F2533}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
