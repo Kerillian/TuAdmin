@@ -1,4 +1,4 @@
-﻿<div style="text-align: center;">
+﻿<center>
 
 # 📄 About
 A simple utility to make managing admins on Tower Unite for condos easier.
@@ -13,4 +13,4 @@ Double click profiles to remove.
 <sup><sup><sup><sup><sup><sup>
 (Names and SteamIDs censored for the privacy of the individuals in the gif.)
 </sup></sup></sup></sup></sup></sup>
-</div>
+</center>
