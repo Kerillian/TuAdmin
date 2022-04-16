@@ -11,6 +11,7 @@ namespace TuAdmin
 {
 	public partial class MainWindow : Window
 	{
+		private const string GHOST_TEXT = "SteamId or link...";
 		private readonly Regex xmlAvatarPattern = new Regex(@"<avatarMedium><\!\[CDATA\[(.+)\]\]><\/avatarMedium>", RegexOptions.Compiled);
 		private readonly Regex xmlSteamId64Pattern = new Regex(@"<steamID64>([0-9]+)<\/steamID64>", RegexOptions.Compiled);
 		private readonly Regex xmlUsernamePattern = new Regex(@"<steamID><\!\[CDATA\[(.+)\]\]><\/steamID>", RegexOptions.Compiled);
@@ -34,6 +35,11 @@ namespace TuAdmin
 				string id64 = xmlSteamId64Pattern.Match(data).Groups[1].Value;
 				string username = xmlUsernamePattern.Match(data).Groups[1].Value;
 				string avatar = xmlAvatarPattern.Match(data).Groups[1].Value;
+
+				if (string.IsNullOrEmpty(id64) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(avatar))
+				{
+					return null;
+				}
 
 				if (Profiles.Children.OfType<ProfilePanel>().Any(x => x.SteamId == id64))
 				{
@@ -94,18 +100,36 @@ namespace TuAdmin
 
 		private async void SteamIdInputBoxKeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key == Key.Return)
+			if (e.Key == Key.Return && SteamIdInputBox.Text != GHOST_TEXT)
 			{
 				if (await GetPanel(SteamIdInputBox.Text) is { } panel)
 				{
 					Profiles.Children.Add(panel);
 				}
+
+				SteamIdInputBox.Text = "";
+			}
+		}
+		
+		private async void AddButtonOnClick(object sender, RoutedEventArgs e)
+		{
+			if (SteamIdInputBox.Text != GHOST_TEXT)
+			{
+				AddButton.IsEnabled = false;
+			
+				if (await GetPanel(SteamIdInputBox.Text) is { } panel)
+				{
+					Profiles.Children.Add(panel);
+				}
+
+				AddButton.IsEnabled = true;
+				SteamIdInputBox.Text = "";
 			}
 		}
 
 		private void SteamIdInputBoxGotFocus(object sender, KeyboardFocusChangedEventArgs e)
 		{
-			if (SteamIdInputBox.Text == "SteamId or link...")
+			if (SteamIdInputBox.Text == GHOST_TEXT)
 			{
 				SteamIdInputBox.Text = "";
 			}
@@ -115,7 +139,7 @@ namespace TuAdmin
 		{
 			if (SteamIdInputBox.Text == string.Empty)
 			{
-				SteamIdInputBox.Text = "SteamId or link...";
+				SteamIdInputBox.Text = GHOST_TEXT;
 			}
 		}
 	}

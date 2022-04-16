@@ -17,10 +17,6 @@
 			<Setter Property="Background" Value="#202020" />
 		</Style>
 
-		<Style TargetType="{x:Type RepeatButton}">
-			<Setter Property="Background" Value="#181804" />
-		</Style>
-
 		<Style TargetType="TextBox">
 			<Setter Property="Background" Value="#181818" />
 			<Setter Property="Foreground" Value="White" />
@@ -37,7 +33,7 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition />
-			<RowDefinition Height="38" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
 		<ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
@@ -51,8 +47,17 @@
 		</ScrollViewer>
 
 		<StackPanel Grid.Row="1">
-			<TextBox x:Name="SteamIdInputBox" KeyDown="SteamIdInputBoxKeyDown" GotKeyboardFocus="SteamIdInputBoxGotFocus" LostKeyboardFocus="SteamIdInputBoxLostFocus" Text="SteamId or link..." />
-			<Button x:Name="SaveButton" Click="SaveButtonClicked" Content="Save" />
+			<Grid Margin="2,0,2,2">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				
+				<TextBox x:Name="SteamIdInputBox" KeyDown="SteamIdInputBoxKeyDown" GotKeyboardFocus="SteamIdInputBoxGotFocus" LostKeyboardFocus="SteamIdInputBoxLostFocus" Text="SteamId or link..." />
+				<Button x:Name="AddButton" Grid.Column="1" Click="AddButtonOnClick" Content="Add"/>
+			</Grid>
+			
+			<Button Margin="2,0,2,2" x:Name="SaveButton" Click="SaveButtonClicked" Content="Save" />
 		</StackPanel>
 	</Grid>
 </Window>
