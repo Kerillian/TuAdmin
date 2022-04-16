@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              MouseDoubleClick="OnMouseDoubleClick"
+             MouseRightButtonDown="OnMouseRightButtonDown"
              d:DesignHeight="64" d:DesignWidth="250">
 	<Control.Resources>
 		<Style TargetType="Label">

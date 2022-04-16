@@ -5,7 +5,8 @@ A simple utility to make managing admins on Tower Unite for condos easier.
 
 # ⚙️Usage
 Paste a SteamID64 or profile link in the textbox and hit enter.<br>
-Double click profiles to remove.
+Double click profiles to remove.<br>
+Right click to open profile.
 <br>
 <br>
 ![Example](./.media/example.gif)

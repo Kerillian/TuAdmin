@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -38,6 +40,28 @@ namespace TuAdmin
 			if (Parent is StackPanel panel)
 			{
 				panel.Children.Remove(this);
+			}
+		}
+
+		private void OnMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			string url = $"https://steamcommunity.com/profiles/{SteamId}/";
+			
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+			{
+				Process.Start(new ProcessStartInfo()
+				{
+					FileName = $"steam://openurl/{url}",
+					UseShellExecute = true
+				});
+			}
+			else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+			{
+				Process.Start("xdg-open", url);
+			}
+			else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+			{
+				Process.Start("open", url);
 			}
 		}
 	}
